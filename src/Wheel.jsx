@@ -113,8 +113,14 @@ export default function Wheel({ selectedId, onSelect }) {
       <text className="bijschrift" y="462" aria-hidden="true">{onderRegel}</text>
 
       <circle className="hub" r="58" />
-      <text className="hub-tekst" y="-6">{t('hubBoven')}</text>
-      <text className="hub-tekst" y="16">{t('hubOnder')}</text>
+      {t('hubOnder') ? (
+        <>
+          <text className="hub-tekst" y="-6">{t('hubBoven')}</text>
+          <text className="hub-tekst" y="16">{t('hubOnder')}</text>
+        </>
+      ) : (
+        <text className="hub-tekst" y="5">{t('hubBoven')}</text>
+      )}
     </svg>
   )
 }

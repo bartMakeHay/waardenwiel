@@ -1,4 +1,4 @@
-# Waardenwiel (Values Wheel)
+# Waardenwiel (Wheel of Values)
 
 Een interactieve, drielagige SVG-visualisatie om de waarden achter je handelen te herkennen en te verkennen. Gebouwd met React en Vite, gehost via GitHub Pages.
 

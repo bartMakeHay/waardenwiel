@@ -17,7 +17,8 @@ const meld = (taal, tekst) => { fouten++; console.error(`[${taal}] ${tekst}`) }
 
 for (const taal of TALEN) {
   const c = taal.code
-  for (const k of Object.keys(bron.ui)) if (!taal.ui[k]) meld(c, `ui.${k} ontbreekt`)
+  const MAG_LEEG = ['hubOnder'] // tweede regel in het midden van het wiel; leeg = één regel
+for (const k of Object.keys(bron.ui)) if (!(k in taal.ui) || (!taal.ui[k] && !MAG_LEEG.includes(k))) meld(c, `ui.${k} ontbreekt`)
   for (const k of Object.keys(taal.ui)) if (!(k in bron.ui)) meld(c, `ui.${k} bestaat niet in het Nederlands`)
   for (const id of ids) {
     const r = taal.inhoud[id]
