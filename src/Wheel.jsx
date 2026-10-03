@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { NODES, PER_ID, PER_RING, RINGEN, labelPlaats, segmentPad, verwant } from './model.js'
+import { NODES, PER_ID, PER_RING, RINGEN, keten, labelPlaats, segmentPad, verwant } from './model.js'
 
 const PADEN = new Map(NODES.map((n) => [n.id, segmentPad(n)]))
 
@@ -42,7 +42,7 @@ export default function Wheel({ selectedId, onSelect }) {
   return (
     <svg
       className={`wheel${selectedId ? ' heeft-selectie' : ''}`}
-      viewBox="-380 -380 760 760"
+      viewBox="-380 -380 760 845"
       role="group"
       aria-label="Waardenwiel in drie lagen. Binnenste ring: behoeften. Middelste ring: waarden. Buitenste ring: handelingen."
       onClick={() => onSelect(null)}
@@ -83,6 +83,15 @@ export default function Wheel({ selectedId, onSelect }) {
       {/* Overlay bovenop zodat focus- en selectiekader nooit door een buur worden afgedekt. */}
       {selectedId && <path className="overlay gekozen-rand" d={PADEN.get(selectedId)} />}
       {focusId && <path className="overlay focus-rand" d={PADEN.get(focusId)} />}
+
+      {/* Bijschrift in het diagram: groot genoeg om ook op een gsm te lezen. */}
+      <text className="bijschrift" y="423" aria-hidden="true">
+        {selectedId
+          ? keten(selectedId).map((n, i) => (
+              <tspan key={n.id}>{i > 0 ? ' \u203a ' : ''}{n.soort === 'handeling' ? `Handeling ${n.nummer}` : n.label}</tspan>
+            ))
+          : 'Kies een segment om te verkennen'}
+      </text>
 
       <circle className="hub" r="58" />
       <text className="hub-tekst" y="-6">Waarden</text>

@@ -86,6 +86,14 @@ header p { margin: 4px 0 16px; color: var(--muted); }
 .gekozen-rand { stroke: var(--ink); stroke-width: 3.5; }
 .focus-rand { stroke: var(--focus); stroke-width: 5; stroke-dasharray: 10 5; }
 
+.bijschrift {
+  fill: var(--ink);
+  font-size: 33px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-family: var(--font);
+  pointer-events: none;
+}
 .hub { fill: var(--paneel-bg); stroke: var(--rand); stroke-width: 1.5; }
 .hub-tekst {
   fill: var(--muted);
@@ -159,7 +167,7 @@ footer { margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
 @media (orientation: landscape) and (max-height: 600px) {
   header p { display: none; }
   header h1 { margin-bottom: 8px; font-size: 1.4rem; }
-  .wiel-vak { max-width: calc(100dvh - 90px); }
+  .wiel-vak { max-width: calc((100dvh - 70px) * 0.9); }
   .paneel { position: static; }
 }
 
