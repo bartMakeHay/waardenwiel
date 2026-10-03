@@ -17,7 +17,7 @@ Elke waarde hoort bij één behoefte, elke handeling bij één waarde. Zo zie je
 - **Klik of tik** op een segment: het segment, zijn voorouders en zijn nakomelingen lichten op, de rest dimt.
 - Het **paneel** naast of onder het wiel toont uitleg, een vraag om bij stil te staan en knoppen om door de keten te navigeren. Op een gsm vind je daar ook een lijst van alle behoeften, want de tekst in het wiel is dan te klein.
 - **Toetsenbord**: Tab naar het wiel, daarna pijltje links/rechts binnen een ring, omhoog naar de bovenliggende laag, omlaag naar de eerste onderliggende laag. Enter of spatie kiest, Escape wist de keuze.
-- **Talen:** Nederlands, Frans, Engels en Duits. De app kiest de eerste taal uit de voorkeurstalen van je browser die ze ondersteunt, en anders Nederlands. Met de taalkiezer rechtsboven wissel je zelf, en de keuze staat in de URL (`?taal=fr`), zodat je er een link naar kunt delen.
+- **Talen:** Nederlands, Frans, Engels en Duits. De app kiest de eerste taal uit de voorkeurstalen van je browser die ze ondersteunt, en anders Nederlands. Met de taalkiezer in de footer wissel je zelf, en de keuze staat in de URL (`?taal=fr`), zodat je er een link naar kunt delen.
 - Werkt in light en dark mode (volgt de instelling van je toestel).
 - Er wordt niets opgeslagen of verstuurd.
 

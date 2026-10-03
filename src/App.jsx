@@ -17,11 +17,8 @@ export default function App() {
   return (
     <div className="pagina">
       <header>
-        <div className="kop">
-          <h1>{t('titel')}</h1>
-          <p>{t('ondertitel')}</p>
-        </div>
-        <TaalKiezer />
+        <h1>{t('titel')}</h1>
+        <p>{t('ondertitel')}</p>
       </header>
       <main className="inhoud">
         <div className="wiel-vak">
@@ -30,6 +27,7 @@ export default function App() {
         <Panel selectedId={selectedId} onSelect={setSelectedId} />
       </main>
       <footer>
+        <TaalKiezer />
         <p>{rijk(t('footer'), { github: <a href="https://github.com/bartMakeHay/waardenwiel">GitHub</a> })}</p>
       </footer>
     </div>
