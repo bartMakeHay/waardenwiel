@@ -1,5 +1,6 @@
 // Inhoud van het waardenwiel: 8 behoeften -> 16 waarden -> 24 handelingen.
 // Pas gerust aan: het wiel rekent de hoeken zelf uit op basis van het aantal handelingen.
+// Elke handeling heeft een `kort` label voor in het bijschrift en een volledige `label` voor het paneel.
 // Elke behoefte heeft een tint (`tint`, een hue van 0 tot 360) die door de hele tak loopt.
 
 export const behoeften = [
@@ -16,8 +17,8 @@ export const behoeften = [
         uitleg: 'Zorgzaam en toegankelijk zijn, zodat anderen zich welkom voelen.',
         vraag: 'Wanneer voelde iemand zich bij jou echt welkom?',
         handelingen: [
-          { label: 'Oprecht vragen hoe het gaat en luisteren zonder meteen advies te geven', vraag: 'Wat hoorde je de laatste keer dat je echt luisterde?' },
-          { label: 'Tijd maken voor een gesprek zonder scherm erbij', vraag: 'Welk gesprek verdient deze week jouw volle aandacht?' },
+          { kort: 'Echt luisteren', label: 'Oprecht vragen hoe het gaat en luisteren zonder meteen advies te geven', vraag: 'Wat hoorde je de laatste keer dat je echt luisterde?' },
+          { kort: 'Gesprek zonder scherm', label: 'Tijd maken voor een gesprek zonder scherm erbij', vraag: 'Welk gesprek verdient deze week jouw volle aandacht?' },
         ],
       },
       {
@@ -26,7 +27,7 @@ export const behoeften = [
         uitleg: 'Betrouwbaar zijn en anderen het voordeel van de twijfel gunnen.',
         vraag: 'Op wie reken je blindelings, en wat maakt dat die persoon betrouwbaar is?',
         handelingen: [
-          { label: 'Afspraken nakomen, en tijdig zeggen als het niet lukt', vraag: 'Welke afspraak schuif je al te lang voor je uit?' },
+          { kort: 'Afspraken nakomen', label: 'Afspraken nakomen, en tijdig zeggen als het niet lukt', vraag: 'Welke afspraak schuif je al te lang voor je uit?' },
         ],
       },
     ],
@@ -44,8 +45,8 @@ export const behoeften = [
         uitleg: 'Ruimte hebben om te doen of te laten wat bij je past.',
         vraag: 'Wat zou je doen als niemand er iets van vond?',
         handelingen: [
-          { label: 'Nee zeggen zonder lange uitleg', vraag: 'Welk nee heb je de voorbije tijd ingeslikt?' },
-          { label: 'Een stuk van de agenda bewust leeg laten', vraag: 'Wat gebeurt er in leegte die in een volle agenda niet kan?' },
+          { kort: 'Nee zeggen', label: 'Nee zeggen zonder lange uitleg', vraag: 'Welk nee heb je de voorbije tijd ingeslikt?' },
+          { kort: 'Lege agenda', label: 'Een stuk van de agenda bewust leeg laten', vraag: 'Wat gebeurt er in leegte die in een volle agenda niet kan?' },
         ],
       },
       {
@@ -54,7 +55,7 @@ export const behoeften = [
         uitleg: 'Trouw blijven aan wie je bent, ook wanneer anderen het anders doen.',
         vraag: 'Waarin ben je anders dan de mensen om je heen, en ben je daar blij mee?',
         handelingen: [
-          { label: 'Kiezen wat bij mij past, ook als anderen iets anders doen', vraag: 'Welke keuze maakte je recent omdat het van je verwacht werd?' },
+          { kort: 'Eigen keuzes maken', label: 'Kiezen wat bij mij past, ook als anderen iets anders doen', vraag: 'Welke keuze maakte je recent omdat het van je verwacht werd?' },
         ],
       },
     ],
@@ -72,8 +73,8 @@ export const behoeften = [
         uitleg: 'Dingen op orde hebben, zodat tegenslag je niet meteen omver blaast.',
         vraag: 'Welk onderdeel van je leven zou je graag steviger willen maken?',
         handelingen: [
-          { label: 'Een buffer opbouwen voor onverwachte kosten', vraag: 'Wat zou een buffer jou vandaag aan rust geven?' },
-          { label: 'Dingen op tijd regelen in plaats van uitstellen', vraag: 'Wat zit al te lang als een steentje in je schoen?' },
+          { kort: 'Buffer opbouwen', label: 'Een buffer opbouwen voor onverwachte kosten', vraag: 'Wat zou een buffer jou vandaag aan rust geven?' },
+          { kort: 'Tijdig regelen', label: 'Dingen op tijd regelen in plaats van uitstellen', vraag: 'Wat zit al te lang als een steentje in je schoen?' },
         ],
       },
       {
@@ -82,7 +83,7 @@ export const behoeften = [
         uitleg: 'Een kalme, voorspelbare omgeving waarin je tot jezelf kunt komen.',
         vraag: 'Waar en wanneer word je het rustigst?',
         handelingen: [
-          { label: 'Prikkels beperken voor het slapengaan', vraag: 'Wat zou je 30 minuten voor het slapen kunnen loslaten?' },
+          { kort: 'Prikkels beperken', label: 'Prikkels beperken voor het slapengaan', vraag: 'Wat zou je 30 minuten voor het slapen kunnen loslaten?' },
         ],
       },
     ],
@@ -100,8 +101,8 @@ export const behoeften = [
         uitleg: 'Iets betekenen voor anderen of voor iets groters dan jezelf.',
         vraag: 'Waar maakte jouw inbreng echt een verschil?',
         handelingen: [
-          { label: 'Tijd of talent aanbieden aan iets buiten mezelf', vraag: 'Welk talent van jou ligt nu ongebruikt?' },
-          { label: 'Iets afmaken dat anderen verder helpt', vraag: 'Wat wacht op jou en houdt iemand anders tegen?' },
+          { kort: 'Talent aanbieden', label: 'Tijd of talent aanbieden aan iets buiten mezelf', vraag: 'Welk talent van jou ligt nu ongebruikt?' },
+          { kort: 'Afmaken wat helpt', label: 'Iets afmaken dat anderen verder helpt', vraag: 'Wat wacht op jou en houdt iemand anders tegen?' },
         ],
       },
       {
@@ -110,7 +111,7 @@ export const behoeften = [
         uitleg: 'Eerlijk zijn en doen wat je zegt, ook wanneer niemand het ziet.',
         vraag: 'Waar botsen woorden en daden bij jou?',
         handelingen: [
-          { label: 'Doen wat ik zeg, ook als niemand kijkt', vraag: 'Welke kleine inconsequentie knaagt aan je?' },
+          { kort: 'Woord houden', label: 'Doen wat ik zeg, ook als niemand kijkt', vraag: 'Welke kleine inconsequentie knaagt aan je?' },
         ],
       },
     ],
@@ -128,8 +129,8 @@ export const behoeften = [
         uitleg: 'Open staan voor het onbekende en vragen blijven stellen.',
         vraag: 'Wat zou je morgen willen uitzoeken als je er de tijd voor had?',
         handelingen: [
-          { label: 'Een vraag blijven stellen tot ik het echt begrijp', vraag: 'Wat doe je alsof je het begrijpt?' },
-          { label: 'Elke week iets nieuws uitproberen', vraag: 'Wat is een klein experiment voor deze week?' },
+          { kort: 'Doorvragen', label: 'Een vraag blijven stellen tot ik het echt begrijp', vraag: 'Wat doe je alsof je het begrijpt?' },
+          { kort: 'Iets nieuws proberen', label: 'Elke week iets nieuws uitproberen', vraag: 'Wat is een klein experiment voor deze week?' },
         ],
       },
       {
@@ -138,7 +139,7 @@ export const behoeften = [
         uitleg: 'Doen wat belangrijk is, ook als het spannend of ongemakkelijk is.',
         vraag: 'Wat vraagt van jou nu een kleine dosis moed?',
         handelingen: [
-          { label: 'Het gesprek aangaan dat ik aan het uitstellen ben', vraag: 'Wat is het ergste dat kan gebeuren, en kun je dat dragen?' },
+          { kort: 'Gesprek aangaan', label: 'Het gesprek aangaan dat ik aan het uitstellen ben', vraag: 'Wat is het ergste dat kan gebeuren, en kun je dat dragen?' },
         ],
       },
     ],
@@ -156,8 +157,8 @@ export const behoeften = [
         uitleg: 'Goed zorgen voor je lichaam en geest, nu en op lange termijn.',
         vraag: 'Wat vraagt je lichaam al een tijdje van je?',
         handelingen: [
-          { label: 'Elke dag bewegen, ook al is het kort', vraag: 'Welke beweging doe je graag, zonder dat je moet?' },
-          { label: 'Regelmatig en rustig eten', vraag: 'Hoe zou een rustige maaltijd er voor jou uitzien?' },
+          { kort: 'Dagelijks bewegen', label: 'Elke dag bewegen, ook al is het kort', vraag: 'Welke beweging doe je graag, zonder dat je moet?' },
+          { kort: 'Rustig eten', label: 'Regelmatig en rustig eten', vraag: 'Hoe zou een rustige maaltijd er voor jou uitzien?' },
         ],
       },
       {
@@ -166,7 +167,7 @@ export const behoeften = [
         uitleg: 'Een evenwicht tussen inspanning en herstel, tussen geven en nemen.',
         vraag: 'Waar slaat de weegschaal door, naar teveel of te weinig?',
         handelingen: [
-          { label: 'Rust inplannen na een drukke periode', vraag: 'Wanneer was je laatst echt volledig uitgerust?' },
+          { kort: 'Rust inplannen', label: 'Rust inplannen na een drukke periode', vraag: 'Wanneer was je laatst echt volledig uitgerust?' },
         ],
       },
     ],
@@ -184,8 +185,8 @@ export const behoeften = [
         uitleg: 'Zien wat anderen doen en dat ook zeggen.',
         vraag: 'Wie verdient van jou een woord van dank dat nog niet is uitgesproken?',
         handelingen: [
-          { label: 'Oprecht bedanken, met een concrete reden', vraag: 'Wie bedank je vandaag, en waarvoor precies?' },
-          { label: 'Het succes van anderen mee vieren', vraag: 'Wiens succes gun je moeiteloos, en wiens minder?' },
+          { kort: 'Bedanken', label: 'Oprecht bedanken, met een concrete reden', vraag: 'Wie bedank je vandaag, en waarvoor precies?' },
+          { kort: 'Succes vieren', label: 'Het succes van anderen mee vieren', vraag: 'Wiens succes gun je moeiteloos, en wiens minder?' },
         ],
       },
       {
@@ -194,7 +195,7 @@ export const behoeften = [
         uitleg: 'Anderen en hun grenzen serieus nemen, en jezelf ook.',
         vraag: 'Waar voel je je niet gerespecteerd, en wat zegt dat over jouw grenzen?',
         handelingen: [
-          { label: 'De grenzen van anderen serieus nemen', vraag: 'Welke grens van iemand anders heb je recent overschreden?' },
+          { kort: 'Grenzen respecteren', label: 'De grenzen van anderen serieus nemen', vraag: 'Welke grens van iemand anders heb je recent overschreden?' },
         ],
       },
     ],
@@ -212,8 +213,8 @@ export const behoeften = [
         uitleg: 'Dingen lichter opvatten en ruimte maken voor spel.',
         vraag: 'Wanneer was je laatst echt aan het spelen?',
         handelingen: [
-          { label: 'Kunnen lachen met mezelf', vraag: 'Welke blunder is intussen vooral grappig geworden?' },
-          { label: 'Iets doen zonder doel of resultaat', vraag: 'Wat zou je doen als het niet nuttig hoefde te zijn?' },
+          { kort: 'Lachen met mezelf', label: 'Kunnen lachen met mezelf', vraag: 'Welke blunder is intussen vooral grappig geworden?' },
+          { kort: 'Doelloos doen', label: 'Iets doen zonder doel of resultaat', vraag: 'Wat zou je doen als het niet nuttig hoefde te zijn?' },
         ],
       },
       {
@@ -222,7 +223,7 @@ export const behoeften = [
         uitleg: 'Aandacht hebben voor het mooie, groot of klein.',
         vraag: 'Welk klein ding mooi vond je gisteren, zonder dat je er veel bij nadacht?',
         handelingen: [
-          { label: 'Aandacht geven aan mooie dingen om me heen', vraag: 'Waar kijk je dagelijks naar zonder het echt te zien?' },
+          { kort: 'Schoonheid zien', label: 'Aandacht geven aan mooie dingen om me heen', vraag: 'Waar kijk je dagelijks naar zonder het echt te zien?' },
         ],
       },
     ],

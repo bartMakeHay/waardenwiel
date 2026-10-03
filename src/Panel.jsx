@@ -6,12 +6,12 @@ function Chip({ node, onSelect, huidig }) {
   return (
     <button
       type="button"
-      className={`chip${huidig ? ' chip-huidig' : ''}`}
+      className={`chip ring-${node.ring}${huidig ? ' chip-huidig' : ''}`}
       style={{ '--h': node.tint }}
       onClick={() => onSelect(node.id)}
       aria-pressed={huidig}
     >
-      {node.soort === 'handeling' ? `${node.nummer}. ${node.label}` : node.label}
+      {node.label}
     </button>
   )
 }
@@ -40,7 +40,7 @@ export default function Panel({ selectedId, onSelect }) {
         </>
       ) : (
         <>
-          <p className="soort">{SOORT[node.soort]}{node.nummer ? ` ${node.nummer}` : ''}</p>
+          <p className="soort">{SOORT[node.soort]}</p>
           <h2>{node.label}</h2>
           {node.uitleg && <p>{node.uitleg}</p>}
 
@@ -50,9 +50,14 @@ export default function Panel({ selectedId, onSelect }) {
           {node.ouderId && (
             <>
               <h3>Waar het uit voortkomt</h3>
-              <div className="chips">
-                {keten(node.id).slice(0, -1).map((n) => <Chip key={n.id} node={n} onSelect={onSelect} />)}
-              </div>
+              <ol className="trap">
+                {keten(node.id).slice(0, -1).map((n, i) => (
+                  <li key={n.id} style={{ '--niveau': i }}>
+                    <span className="trap-soort">{SOORT[n.soort]}</span>
+                    <Chip node={n} onSelect={onSelect} />
+                  </li>
+                ))}
+              </ol>
             </>
           )}
 

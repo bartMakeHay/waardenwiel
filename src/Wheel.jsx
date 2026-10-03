@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
-import { NODES, PER_ID, PER_RING, RINGEN, keten, labelPlaats, segmentPad, verwant } from './model.js'
+import { NODES, PER_ID, PER_RING, RINGEN, keten, labelPlaats, naam, segmentPad, verwant } from './model.js'
 
+const SOORT = { behoefte: 'Behoefte', waarde: 'Waarde', handeling: 'Handeling' }
 const PADEN = new Map(NODES.map((n) => [n.id, segmentPad(n)]))
 
 function ariaLabel(n) {
-  if (n.soort === 'handeling') return `Handeling ${n.nummer}: ${n.label}`
+  if (n.soort === 'handeling') return `Handeling: ${n.label}, bij ${PER_ID.get(n.ouderId).label}`
   if (n.soort === 'waarde') return `Waarde: ${n.label}, bij ${PER_ID.get(n.ouderId).label}`
   return `Behoefte: ${n.label}`
 }
@@ -15,6 +16,11 @@ export default function Wheel({ selectedId, onSelect }) {
   const [focusId, setFocusId] = useState(null)
   const relevant = verwant(selectedId)
   const actief = rovingId
+
+  const gekozen = selectedId ? PER_ID.get(selectedId) : null
+  const boven = gekozen ? keten(selectedId).slice(0, -1).map((n) => n.label) : []
+  const bovenRegel = gekozen ? [SOORT[gekozen.soort], boven.join(' \u203a ')].filter(Boolean).join(' \u00b7 ') : ''
+  const onderRegel = gekozen ? naam(gekozen) : 'Kies een segment om te verkennen'
 
   const focusOp = (id) => {
     setRovingId(id)
@@ -42,7 +48,7 @@ export default function Wheel({ selectedId, onSelect }) {
   return (
     <svg
       className={`wheel${selectedId ? ' heeft-selectie' : ''}`}
-      viewBox="-380 -380 760 845"
+      viewBox="-380 -380 760 865"
       role="group"
       aria-label="Waardenwiel in drie lagen. Binnenste ring: behoeften. Middelste ring: waarden. Buitenste ring: handelingen."
       onClick={() => onSelect(null)}
@@ -67,11 +73,9 @@ export default function Wheel({ selectedId, onSelect }) {
                 onFocus={(e) => { setRovingId(n.id); setFocusId(e.currentTarget.matches(':focus-visible') ? n.id : null) }}
                 onBlur={() => setFocusId((v) => (v === n.id ? null : v))}
               >
-                <title>{n.label}</title>
+                <title>{naam(n)}</title>
                 <path d={PADEN.get(n.id)} />
-                {n.ring === 2 ? (
-                  <text className="lbl lbl-handeling" x={x} y={y}>{n.nummer}</text>
-                ) : (
+                {n.ring < 2 && (
                   <text className={`lbl lbl-${n.soort}`} x={x} y={y} transform={`rotate(${draai} ${x} ${y})`}>{n.label}</text>
                 )}
               </g>
@@ -84,14 +88,10 @@ export default function Wheel({ selectedId, onSelect }) {
       {selectedId && <path className="overlay gekozen-rand" d={PADEN.get(selectedId)} />}
       {focusId && <path className="overlay focus-rand" d={PADEN.get(focusId)} />}
 
-      {/* Bijschrift in het diagram: groot genoeg om ook op een gsm te lezen. */}
-      <text className="bijschrift" y="423" aria-hidden="true">
-        {selectedId
-          ? keten(selectedId).map((n, i) => (
-              <tspan key={n.id}>{i > 0 ? ' \u203a ' : ''}{n.soort === 'handeling' ? `Handeling ${n.nummer}` : n.label}</tspan>
-            ))
-          : 'Kies een segment om te verkennen'}
-      </text>
+      {/* Bijschrift in het diagram: groot genoeg om ook op een gsm te lezen. Bovenste regel = niveau en
+          bovenliggende lagen, onderste regel = de gekozen naam. */}
+      <text className="bijschrift-boven" y="422" aria-hidden="true">{bovenRegel}</text>
+      <text className="bijschrift" y="462" aria-hidden="true">{onderRegel}</text>
 
       <circle className="hub" r="58" />
       <text className="hub-tekst" y="-6">Waarden</text>

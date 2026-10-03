@@ -86,10 +86,17 @@ header p { margin: 4px 0 16px; color: var(--muted); }
 .gekozen-rand { stroke: var(--ink); stroke-width: 3.5; }
 .focus-rand { stroke: var(--focus); stroke-width: 5; stroke-dasharray: 10 5; }
 
+.bijschrift-boven {
+  fill: var(--muted);
+  font-size: 25px;
+  text-anchor: middle;
+  font-family: var(--font);
+  pointer-events: none;
+}
 .bijschrift {
   fill: var(--ink);
-  font-size: 33px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 650;
   text-anchor: middle;
   font-family: var(--font);
   pointer-events: none;
@@ -128,12 +135,17 @@ header p { margin: 4px 0 16px; color: var(--muted); }
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid hsl(var(--h) 30% var(--edge-l));
-  background: hsl(var(--h) 55% var(--l1));
+  background: hsl(var(--h) 55% var(--l-ring, var(--l1)));
   color: hsl(var(--h) 45% var(--seg-ink-l));
   cursor: pointer;
 }
 .chip:hover { filter: brightness(0.96); }
 .chip-huidig { border-width: 2px; border-color: var(--ink); font-weight: 600; }
+
+.trap { list-style: none; margin: 0; padding: 0; }
+.trap li { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; margin-left: calc(var(--niveau) * 24px); }
+.trap li + li::before { content: '\21b3'; color: var(--muted); margin-left: -18px; margin-right: -4px; }
+.trap-soort { flex: 0 0 5.2em; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 
 .wis {
   margin-top: 18px;
@@ -167,7 +179,7 @@ footer { margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
 @media (orientation: landscape) and (max-height: 600px) {
   header p { display: none; }
   header h1 { margin-bottom: 8px; font-size: 1.4rem; }
-  .wiel-vak { max-width: calc((100dvh - 70px) * 0.9); }
+  .wiel-vak { max-width: calc((100dvh - 70px) * 0.87); }
   .paneel { position: static; }
 }
 

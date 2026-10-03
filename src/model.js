@@ -18,7 +18,7 @@ function bouw() {
   )
   const stap = 360 / totaal
   let slot = 0
-  let nummer = 0
+  let teller = 0
 
   const voegToe = (n) => {
     nodes.push(n)
@@ -38,9 +38,9 @@ function bouw() {
       })
       bn.kindIds.push(wn.id)
       for (const h of w.handelingen) {
-        nummer += 1
+        teller += 1
         const hn = voegToe({
-          id: `handeling-${nummer}`, ring: 2, soort: 'handeling', nummer, label: h.label, uitleg: null,
+          id: `handeling-${teller}`, ring: 2, soort: 'handeling', kort: h.kort, label: h.label, uitleg: null,
           vraag: h.vraag, tint: b.tint, ouderId: wn.id, kindIds: [],
           start: slot * stap, eind: (slot + 1) * stap,
         })
@@ -55,6 +55,9 @@ function bouw() {
 }
 
 export const { nodes: NODES, perId: PER_ID } = bouw()
+// Naam voor in een bijschrift of tooltip: de korte naam als die bestaat.
+export const naam = (n) => n.kort ?? n.label
+
 export const PER_RING = RINGEN.map((_, i) => NODES.filter((n) => n.ring === i))
 
 // Geselecteerde node, zijn voorouders en alle nakomelingen.
