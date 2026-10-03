@@ -28,7 +28,7 @@ export default function App() {
       </main>
       <footer>
         <TaalKiezer />
-        <p>{rijk(t('footer'), { github: <a href="https://github.com/bartMakeHay/waardenwiel">GitHub</a> })}</p>
+        <p>{rijk(t('footer'), { github: <a href="https://github.com/bartMakeHay/wheelofvalues">GitHub</a> })}</p>
       </footer>
     </div>
   )

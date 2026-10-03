@@ -1,4 +1,4 @@
-# Waardenwiel
+# Waardenwiel (Values Wheel)
 
 Een interactieve, drielagige SVG-visualisatie om de waarden achter je handelen te herkennen en te verkennen. Gebouwd met React en Vite, gehost via GitHub Pages.
 
@@ -30,7 +30,7 @@ npm install
 npm run dev
 ```
 
-Open daarna <http://localhost:5173/waardenwiel/>. Het pad `/waardenwiel/` komt van de `base` in [vite.config.js](vite.config.js), nodig voor GitHub Pages.
+Open daarna <http://localhost:5173/wheelofvalues/>. Het pad `/wheelofvalues/` komt van de `base` in [vite.config.js](vite.config.js), nodig voor GitHub Pages.
 
 Andere commando's:
 
@@ -42,6 +42,10 @@ npm run preview  # de productiebouw lokaal bekijken
 ## Inhoud aanpassen
 
 Alle teksten staan in [src/data/waarden.js](src/data/waarden.js): behoeften, waarden en handelingen met uitleg en reflectievraag. De hoeken van het wiel worden automatisch berekend uit het aantal handelingen per waarde, dus je kunt items toevoegen of schrappen zonder iets te tekenen.
+
+## Adres
+
+De site draait op <https://bartmakehay.github.io/wheelofvalues/>. De Engelse naam in het adres is bewust: de app kiest zelf de taal van de bezoeker, dus een Nederlandstalige lezer krijgt er meteen het Nederlands. De repo heette eerder `waardenwiel`; het oude Pages-adres bestaat niet meer.
 
 ## Talen en vertalingen
 
@@ -60,7 +64,7 @@ De Franse, Engelse en Duitse teksten zijn opgesteld met Claude en nog niet nagel
 
 ## Publiceren op GitHub Pages
 
-Een GitHub Actions-workflow ([.github/workflows/pages.yml](.github/workflows/pages.yml)) bouwt en publiceert de site bij elke push naar `main`. Zet daarvoor eenmalig in de repo-instellingen onder **Settings, Pages, Source** de optie **GitHub Actions** aan. De site staat dan op `https://bartmakehay.github.io/waardenwiel/`.
+Een GitHub Actions-workflow ([.github/workflows/pages.yml](.github/workflows/pages.yml)) bouwt en publiceert de site bij elke push naar `main`. Zet daarvoor eenmalig in de repo-instellingen onder **Settings, Pages, Source** de optie **GitHub Actions** aan. De site staat dan op `https://bartmakehay.github.io/wheelofvalues/`.
 
 ## Licentie
 

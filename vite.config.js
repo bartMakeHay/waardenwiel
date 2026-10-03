@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// De site draait op https://<gebruiker>.github.io/waardenwiel/, vandaar deze base.
+// De site draait op https://<gebruiker>.github.io/wheelofvalues/, vandaar deze base.
 export default defineConfig({
-  base: '/waardenwiel/',
+  base: '/wheelofvalues/',
   plugins: [react()],
 })
