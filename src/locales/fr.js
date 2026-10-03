@@ -56,7 +56,7 @@ export default {
     rust: ["Calme", "Un environnement paisible et prévisible où tu peux te retrouver.", "Où et quand es-tu le plus calme ?"],
     "rust-1": ["Limiter les stimuli", "Limiter les stimulations avant de dormir", "Que pourrais-tu lâcher 30 minutes avant de dormir ?"],
     betekenis: ["Sens", "Le besoin de savoir pourquoi tu fais les choses et qu’elles comptent.", "Pour quoi te lèves-tu le matin, au-delà de ce qui est obligatoire ?"],
-    bijdragen: ["Contribuer", "Compter pour les autres ou pour quelque chose de plus grand que toi.", "Où ta contribution a-t-elle vraiment fait la différence ?"],
+    bijdragen: ["Contribution", "Compter pour les autres ou pour quelque chose de plus grand que toi.", "Où ta contribution a-t-elle vraiment fait la différence ?"],
     "bijdragen-1": ["Offrir un talent", "Offrir du temps ou un talent à quelque chose en dehors de moi-même", "Quel talent as-tu en ce moment qui reste inutilisé ?"],
     "bijdragen-2": ["Finir ce qui aide", "Terminer quelque chose qui aide les autres à avancer", "Qu’est-ce qui attend de toi et bloque quelqu’un d’autre ?"],
     integriteit: ["Intégrité", "Être honnête et faire ce que tu dis, même quand personne ne regarde.", "Où tes paroles et tes actes se contredisent-ils ?"],

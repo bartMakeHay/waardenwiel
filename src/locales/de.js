@@ -56,7 +56,7 @@ export default {
     rust: ["Ruhe", "Eine ruhige, vorhersehbare Umgebung, in der du zu dir kommen kannst.", "Wo und wann wirst du am ruhigsten?"],
     "rust-1": ["Reize reduzieren", "Reize vor dem Schlafengehen reduzieren", "Was könntest du 30 Minuten vor dem Schlafen loslassen?"],
     betekenis: ["Sinn", "Das Bedürfnis zu wissen, wofür du etwas tust und dass es zählt.", "Wofür stehst du morgens auf, abgesehen von dem, was sein muss?"],
-    bijdragen: ["Beitragen", "Anderen oder etwas Größerem als dir selbst etwas bedeuten.", "Wo hat dein Beitrag wirklich einen Unterschied gemacht?"],
+    bijdragen: ["Beitrag", "Anderen oder etwas Größerem als dir selbst etwas bedeuten.", "Wo hat dein Beitrag wirklich einen Unterschied gemacht?"],
     "bijdragen-1": ["Talent einbringen", "Zeit oder Talent für etwas außerhalb von mir selbst einbringen", "Welches deiner Talente liegt gerade brach?"],
     "bijdragen-2": ["Zu Ende bringen", "Etwas zu Ende bringen, das anderen weiterhilft", "Was wartet auf dich und hält jemand anderen auf?"],
     integriteit: ["Integrität", "Ehrlich sein und tun, was du sagst, auch wenn niemand zusieht.", "Wo widersprechen sich Worte und Taten bei dir?"],

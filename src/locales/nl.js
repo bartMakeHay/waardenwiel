@@ -60,7 +60,7 @@ export default {
     rust: ["Rust", "Een kalme, voorspelbare omgeving waarin je tot jezelf kunt komen.", "Waar en wanneer word je het rustigst?"],
     'rust-1': ["Prikkels beperken", "Prikkels beperken voor het slapengaan", "Wat zou je 30 minuten voor het slapen kunnen loslaten?"],
     betekenis: ["Betekenis", "De behoefte om te weten waarvoor je dingen doet en dat het ertoe doet.", "Waarvoor sta je ’s ochtends op, los van wat moet?"],
-    bijdragen: ["Bijdragen", "Iets betekenen voor anderen of voor iets groters dan jezelf.", "Waar maakte jouw inbreng echt een verschil?"],
+    bijdragen: ["Bijdrage", "Iets betekenen voor anderen of voor iets groters dan jezelf.", "Waar maakte jouw inbreng echt een verschil?"],
     'bijdragen-1': ["Talent aanbieden", "Tijd of talent aanbieden aan iets buiten mezelf", "Welk talent van jou ligt nu ongebruikt?"],
     'bijdragen-2': ["Afmaken wat helpt", "Iets afmaken dat anderen verder helpt", "Wat wacht op jou en houdt iemand anders tegen?"],
     integriteit: ["Integriteit", "Eerlijk zijn en doen wat je zegt, ook wanneer niemand het ziet.", "Waar botsen woorden en daden bij jou?"],
