@@ -5,7 +5,8 @@
   --muted: #5a5348;
   --paneel-bg: #ffffff;
   --rand: #d6cfc3;
-  --focus: #0b57d0;
+  --focus: #0842a0;
+  --edge-l: 45%;
   --l0: 80%;
   --l1: 87%;
   --l2: 93%;
@@ -20,7 +21,8 @@
     --muted: #b8b0a3;
     --paneel-bg: #1e1b16;
     --rand: #413b32;
-    --focus: #8ab4ff;
+    --focus: #ffd54f;
+    --edge-l: 55%;
     --l0: 30%;
     --l1: 24%;
     --l2: 19%;
@@ -48,15 +50,15 @@ header p { margin: 4px 0 16px; color: var(--muted); }
   .paneel { position: sticky; top: 16px; }
 }
 
-.wiel-vak { width: 100%; max-width: 720px; margin: 0 auto; }
+.wiel-vak { width: 100%; max-width: 720px; margin: 0 auto; container-type: inline-size; }
 .wheel { width: 100%; height: auto; display: block; }
 
 /* Segmenten */
 .seg { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
 .seg path {
   fill: hsl(var(--h) 55% var(--l-ring));
-  stroke: var(--bg);
-  stroke-width: 0.5;
+  stroke: hsl(var(--h) 30% var(--edge-l));
+  stroke-width: 1;
 }
 .seg:hover path { filter: brightness(0.96); }
 .ring-0 { --l-ring: var(--l0); }
@@ -76,7 +78,9 @@ header p { margin: 4px 0 16px; color: var(--muted); }
 .lbl-handeling { font-size: 15px; font-weight: 600; }
 
 /* Dimmen alles wat niet bij de keuze hoort */
-.heeft-selectie .seg:not(.verwant) { opacity: 0.28; }
+/* Enkel het vlak vervaagt sterk; de tekst blijft leesbaar (contrast >= 4.5:1). */
+.heeft-selectie .seg:not(.verwant) path { opacity: 0.35; }
+.heeft-selectie .seg:not(.verwant) .lbl { opacity: 0.75; }
 
 .overlay { fill: none; pointer-events: none; }
 .gekozen-rand { stroke: var(--ink); stroke-width: 3.5; }
@@ -115,7 +119,7 @@ header p { margin: 4px 0 16px; color: var(--muted); }
   min-height: 44px;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid hsl(var(--h) 35% 55%);
+  border: 1px solid hsl(var(--h) 30% var(--edge-l));
   background: hsl(var(--h) 55% var(--l1));
   color: hsl(var(--h) 45% var(--seg-ink-l));
   cursor: pointer;
@@ -142,10 +146,21 @@ a { color: var(--focus); }
 
 footer { margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
 
-/* Op een gsm is tekst in het wiel te klein: het paneel en de kleuren nemen dat over. */
-@media (max-width: 520px) {
+/* Is het wiel te klein om tekst te lezen, dan nemen het paneel en de kleuren dat over. */
+@container (max-width: 440px) {
   .lbl { display: none; }
+}
+
+@media (max-width: 520px) {
   header h1 { font-size: 1.5rem; }
+}
+
+/* Gsm liggend: wiel past binnen de schermhoogte, kop wordt compact. */
+@media (orientation: landscape) and (max-height: 600px) {
+  header p { display: none; }
+  header h1 { margin-bottom: 8px; font-size: 1.4rem; }
+  .wiel-vak { max-width: calc(100dvh - 90px); }
+  .paneel { position: static; }
 }
 
 @media (prefers-reduced-motion: reduce) {
