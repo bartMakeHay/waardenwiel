@@ -1,16 +1,22 @@
 import { useRef, useState } from 'react'
-import { NODES, PER_ID, PER_RING, RINGEN, keten, labelPlaats, naam, segmentPad, verwant } from './model.js'
+import { NODES, PER_ID, PER_RING, RINGEN, keten, labelPlaats, segmentPad, verwant } from './model.js'
+import { useI18n } from './i18n.jsx'
 
-const SOORT = { behoefte: 'Behoefte', waarde: 'Waarde', handeling: 'Handeling' }
 const PADEN = new Map(NODES.map((n) => [n.id, segmentPad(n)]))
+const SOORT_SLEUTEL = { behoefte: 'soortBehoefte', waarde: 'soortWaarde', handeling: 'soortHandeling' }
+const RING_SLEUTEL = { behoefte: 'ringBehoefte', waarde: 'ringWaarde', handeling: 'ringHandeling' }
+const ARIA_SLEUTEL = { behoefte: 'ariaBehoefte', waarde: 'ariaWaarde', handeling: 'ariaHandeling' }
 
-function ariaLabel(n) {
-  if (n.soort === 'handeling') return `Handeling: ${n.label}, bij ${PER_ID.get(n.ouderId).label}`
-  if (n.soort === 'waarde') return `Waarde: ${n.label}, bij ${PER_ID.get(n.ouderId).label}`
-  return `Behoefte: ${n.label}`
+// Past de letter aan de ruimte in de ring aan, zodat langere vertalingen niet uit hun segment lopen.
+// `breedte` is de gemiddelde tekenbreedte in em (vet is breder), `max` de beschikbare ruimte in SVG-eenheden.
+const LABEL = { behoefte: { basis: 17, max: 116, breedte: 0.6 }, waarde: { basis: 14.5, max: 112, breedte: 0.55 } }
+const lettergrootte = (tekst, soort) => {
+  const { basis, max, breedte } = LABEL[soort]
+  return Math.min(basis, max / (tekst.length * breedte))
 }
 
 export default function Wheel({ selectedId, onSelect }) {
+  const { t, tekst, naam } = useI18n()
   const refs = useRef(new Map())
   const [rovingId, setRovingId] = useState(PER_RING[0][0].id)
   const [focusId, setFocusId] = useState(null)
@@ -18,9 +24,14 @@ export default function Wheel({ selectedId, onSelect }) {
   const actief = rovingId
 
   const gekozen = selectedId ? PER_ID.get(selectedId) : null
-  const boven = gekozen ? keten(selectedId).slice(0, -1).map((n) => n.label) : []
-  const bovenRegel = gekozen ? [SOORT[gekozen.soort], boven.join(' \u203a ')].filter(Boolean).join(' \u00b7 ') : ''
-  const onderRegel = gekozen ? naam(gekozen) : 'Kies een segment om te verkennen'
+  const boven = gekozen ? keten(selectedId).slice(0, -1).map((n) => tekst(n.id).label) : []
+  const bovenRegel = gekozen ? [t(SOORT_SLEUTEL[gekozen.soort]), boven.join(' \u203a ')].filter(Boolean).join(' \u00b7 ') : ''
+  const onderRegel = gekozen ? naam(gekozen.id) : t('kiesSegment')
+
+  const ariaLabel = (n) => {
+    const ouder = n.ouderId ? tekst(n.ouderId).label : ''
+    return t(ARIA_SLEUTEL[n.soort], { naam: tekst(n.id).label, ouder })
+  }
 
   const focusOp = (id) => {
     setRovingId(id)
@@ -50,11 +61,11 @@ export default function Wheel({ selectedId, onSelect }) {
       className={`wheel${selectedId ? ' heeft-selectie' : ''}`}
       viewBox="-380 -380 760 865"
       role="group"
-      aria-label="Waardenwiel in drie lagen. Binnenste ring: behoeften. Middelste ring: waarden. Buitenste ring: handelingen."
+      aria-label={t('wielAria')}
       onClick={() => onSelect(null)}
     >
       {RINGEN.map((r, i) => (
-        <g key={r.soort} role="group" aria-label={`${r.naam}en`}>
+        <g key={r.soort} role="group" aria-label={t(RING_SLEUTEL[r.soort])}>
           {PER_RING[i].map((n) => {
             const { x, y, draai } = labelPlaats(n)
             const klasse = ['seg', `ring-${n.ring}`, relevant.has(n.id) ? 'verwant' : '', selectedId === n.id ? 'gekozen' : '']
@@ -73,10 +84,18 @@ export default function Wheel({ selectedId, onSelect }) {
                 onFocus={(e) => { setRovingId(n.id); setFocusId(e.currentTarget.matches(':focus-visible') ? n.id : null) }}
                 onBlur={() => setFocusId((v) => (v === n.id ? null : v))}
               >
-                <title>{naam(n)}</title>
+                <title>{naam(n.id)}</title>
                 <path d={PADEN.get(n.id)} />
                 {n.ring < 2 && (
-                  <text className={`lbl lbl-${n.soort}`} x={x} y={y} transform={`rotate(${draai} ${x} ${y})`}>{n.label}</text>
+                  <text
+                    className={`lbl lbl-${n.soort}`}
+                    x={x}
+                    y={y}
+                    transform={`rotate(${draai} ${x} ${y})`}
+                    style={{ fontSize: lettergrootte(tekst(n.id).label, n.soort) }}
+                  >
+                    {tekst(n.id).label}
+                  </text>
                 )}
               </g>
             )
@@ -94,8 +113,8 @@ export default function Wheel({ selectedId, onSelect }) {
       <text className="bijschrift" y="462" aria-hidden="true">{onderRegel}</text>
 
       <circle className="hub" r="58" />
-      <text className="hub-tekst" y="-6">Waarden</text>
-      <text className="hub-tekst" y="16">wiel</text>
+      <text className="hub-tekst" y="-6">{t('hubBoven')}</text>
+      <text className="hub-tekst" y="16">{t('hubOnder')}</text>
     </svg>
   )
 }

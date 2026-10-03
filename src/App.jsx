@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import Wheel from './Wheel.jsx'
 import Panel from './Panel.jsx'
+import TaalKiezer from './TaalKiezer.jsx'
+import { rijk, useI18n } from './i18n.jsx'
 
 export default function App() {
   const [selectedId, setSelectedId] = useState(null)
+  const { t } = useI18n()
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') setSelectedId(null) }
@@ -14,8 +17,11 @@ export default function App() {
   return (
     <div className="pagina">
       <header>
-        <h1>Waardenwiel</h1>
-        <p>Een drielagige kaart om de waarden achter je handelen te herkennen en te verkennen.</p>
+        <div className="kop">
+          <h1>{t('titel')}</h1>
+          <p>{t('ondertitel')}</p>
+        </div>
+        <TaalKiezer />
       </header>
       <main className="inhoud">
         <div className="wiel-vak">
@@ -24,10 +30,7 @@ export default function App() {
         <Panel selectedId={selectedId} onSelect={setSelectedId} />
       </main>
       <footer>
-        <p>
-          Er wordt niets opgeslagen of verstuurd. Broncode op{' '}
-          <a href="https://github.com/bartMakeHay/waardenwiel">GitHub</a>, onder MIT-licentie.
-        </p>
+        <p>{rijk(t('footer'), { github: <a href="https://github.com/bartMakeHay/waardenwiel">GitHub</a> })}</p>
       </footer>
     </div>
   )

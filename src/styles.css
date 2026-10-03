@@ -41,8 +41,31 @@ body {
 }
 
 .pagina { max-width: 1100px; margin: 0 auto; padding: 16px; }
+header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 8px 16px; margin-bottom: 16px; }
+.kop { flex: 1 1 320px; }
 header h1 { margin: 8px 0 0; font-size: 1.75rem; }
-header p { margin: 4px 0 16px; color: var(--muted); }
+header p { margin: 4px 0 0; color: var(--muted); }
+
+.taalkiezer { display: inline-flex; margin-top: 8px; border: 1px solid hsl(30 15% var(--edge-l)); border-radius: 10px; overflow: hidden; }
+.taalkiezer button {
+  font: inherit;
+  min-height: 44px;
+  min-width: 48px;
+  padding: 0 12px;
+  border: 0;
+  background: var(--paneel-bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.taalkiezer button + button { border-left: 1px solid var(--rand); }
+.taalkiezer button:hover { background: var(--bg); }
+.taalkiezer button[aria-pressed='true'] { background: var(--ink); color: var(--bg); font-weight: 650; }
+.taalkiezer :focus-visible { outline-offset: -3px; }
+.taal-naam { display: none; }
+@media (min-width: 640px) {
+  .taal-code { display: none; }
+  .taal-naam { display: inline; }
+}
 
 .inhoud { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 800px) {
