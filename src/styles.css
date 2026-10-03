@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light dark;
+  --bg: #faf8f5;
+  --ink: #1f1b16;
+  --muted: #5a5348;
+  --paneel-bg: #ffffff;
+  --rand: #d6cfc3;
+  --focus: #0b57d0;
+  --l0: 80%;
+  --l1: 87%;
+  --l2: 93%;
+  --seg-ink-l: 14%;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15130f;
+    --ink: #f1ece4;
+    --muted: #b8b0a3;
+    --paneel-bg: #1e1b16;
+    --rand: #413b32;
+    --focus: #8ab4ff;
+    --l0: 30%;
+    --l1: 24%;
+    --l2: 19%;
+    --seg-ink-l: 94%;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.pagina { max-width: 1100px; margin: 0 auto; padding: 16px; }
+header h1 { margin: 8px 0 0; font-size: 1.75rem; }
+header p { margin: 4px 0 16px; color: var(--muted); }
+
+.inhoud { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 800px) {
+  .inhoud { grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr); }
+  .paneel { position: sticky; top: 16px; }
+}
+
+.wiel-vak { width: 100%; max-width: 720px; margin: 0 auto; }
+.wheel { width: 100%; height: auto; display: block; }
+
+/* Segmenten */
+.seg { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; transition: opacity 0.15s; }
+.seg path {
+  fill: hsl(var(--h) 55% var(--l-ring));
+  stroke: var(--bg);
+  stroke-width: 0.5;
+}
+.seg:hover path { filter: brightness(0.96); }
+.ring-0 { --l-ring: var(--l0); }
+.ring-1 { --l-ring: var(--l1); }
+.ring-2 { --l-ring: var(--l2); }
+
+.lbl {
+  fill: hsl(var(--h) 45% var(--seg-ink-l));
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font);
+}
+.lbl-behoefte { font-size: 17px; font-weight: 650; }
+.lbl-waarde { font-size: 14.5px; font-weight: 500; }
+.lbl-handeling { font-size: 15px; font-weight: 600; }
+
+/* Dimmen alles wat niet bij de keuze hoort */
+.heeft-selectie .seg:not(.verwant) { opacity: 0.28; }
+
+.overlay { fill: none; pointer-events: none; }
+.gekozen-rand { stroke: var(--ink); stroke-width: 3.5; }
+.focus-rand { stroke: var(--focus); stroke-width: 5; stroke-dasharray: 10 5; }
+
+.hub { fill: var(--paneel-bg); stroke: var(--rand); stroke-width: 1.5; }
+.hub-tekst {
+  fill: var(--muted);
+  font-size: 16px;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-family: var(--font);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+/* Paneel */
+.paneel {
+  background: var(--paneel-bg);
+  border: 1px solid var(--rand);
+  border-radius: 14px;
+  padding: 20px;
+}
+.paneel h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.paneel h3 { margin: 18px 0 6px; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.paneel p { margin: 0 0 10px; }
+.soort { margin: 0 0 2px; color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.vraag { font-size: 1.1rem; font-style: italic; }
+.hint { color: var(--muted); font-size: 0.9rem; margin-top: 16px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--h) 35% 55%);
+  background: hsl(var(--h) 55% var(--l1));
+  color: hsl(var(--h) 45% var(--seg-ink-l));
+  cursor: pointer;
+}
+.chip:hover { filter: brightness(0.96); }
+.chip-huidig { border-width: 2px; border-color: var(--ink); font-weight: 600; }
+
+.wis {
+  margin-top: 18px;
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--rand);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.wis:hover { background: var(--bg); }
+
+a { color: var(--focus); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.seg:focus-visible { outline: none; }
+
+footer { margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+
+/* Op een gsm is tekst in het wiel te klein: het paneel en de kleuren nemen dat over. */
+@media (max-width: 520px) {
+  .lbl { display: none; }
+  header h1 { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg { transition: none; }
+}
